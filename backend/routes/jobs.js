@@ -1,0 +1,10 @@
+import express from "express";
+import Job from "../models/Job.js";
+import { protect } from "../middleware/auth.js";
+const router = express.Router();
+router.get("/", async (req, res) => res.json(await Job.find(req.query.all==="true"?{}:{isOpen:true}).sort({createdAt:-1})));
+router.get("/:id", async (req, res) => { const j=await Job.findById(req.params.id); if(!j) return res.status(404).json({message:"Not found"}); res.json(j); });
+router.post("/", protect, async (req, res) => { try { res.status(201).json(await Job.create(req.body)); } catch(err){ res.status(400).json({message:err.message}); }});
+router.put("/:id", protect, async (req, res) => { try { res.json(await Job.findByIdAndUpdate(req.params.id, req.body, {new:true})); } catch(err){ res.status(400).json({message:err.message}); }});
+router.delete("/:id", protect, async (req, res) => { await Job.findByIdAndDelete(req.params.id); res.json({message:"Deleted"}); });
+export default router;

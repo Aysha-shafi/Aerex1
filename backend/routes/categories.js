@@ -1,0 +1,10 @@
+import express from "express";
+import Category from "../models/Category.js";
+import { protect } from "../middleware/auth.js";
+const router = express.Router();
+const toSlug = (s) => s.toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
+router.get("/", async (req, res) => res.json(await Category.find().sort({ name: 1 })));
+router.post("/", protect, async (req, res) => { try { const { name, description } = req.body; res.status(201).json(await Category.create({ name, slug: toSlug(name), description })); } catch(err){ res.status(400).json({message:err.message}); }});
+router.put("/:id", protect, async (req, res) => { try { const { name, description } = req.body; const u = { description }; if(name){ u.name=name; u.slug=toSlug(name); } res.json(await Category.findByIdAndUpdate(req.params.id, u, { new: true })); } catch(err){ res.status(400).json({message:err.message}); }});
+router.delete("/:id", protect, async (req, res) => { await Category.findByIdAndDelete(req.params.id); res.json({ message: "Deleted" }); });
+export default router;
