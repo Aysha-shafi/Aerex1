@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import api from "../api/axios.js";
+import api, { resolveAssetUrl } from "../api/axios.js";
 
 export default function ProductDetail() {
   const { slug } = useParams();
@@ -45,9 +45,10 @@ export default function ProductDetail() {
     );
   }
 
-  const wa = `https://wa.me/971545087262?text=${encodeURIComponent(
+  const wa = `https://wa.me/971545253697?text=${encodeURIComponent(
     `Hello AEREX, I'm interested in the: ${product.name}. Please share more details and pricing. Thank you.`
   )}`;
+  const mainImage = resolveAssetUrl(product.images?.[activeImg]);
 
   return (
     <section className="product-detail-section">
@@ -74,7 +75,7 @@ export default function ProductDetail() {
 
               {product.images?.length > 0 ? (
                 <img
-                  src={product.images[activeImg]}
+                  src={mainImage}
                   alt={product.name}
                 />
               ) : (
@@ -113,7 +114,7 @@ export default function ProductDetail() {
                     onClick={() => setActiveImg(i)}
                   >
                     <img
-                      src={img}
+                      src={resolveAssetUrl(img)}
                       alt={`${product.name} ${i + 1}`}
                     />
                   </button>

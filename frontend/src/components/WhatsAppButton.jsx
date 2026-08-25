@@ -1,4 +1,4 @@
-const PHONE = "971545087262";
+const PHONE = "971545253697";
 export default function WhatsAppButton() {
   return (
     <a href={`https://wa.me/${PHONE}?text=${encodeURIComponent("Hello AEREX, I'd like to enquire about your products/services.")}`} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"

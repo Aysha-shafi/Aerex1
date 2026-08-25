@@ -17,7 +17,7 @@ export default function Contact() {
     );
 
     window.open(
-      `https://wa.me/971545087262?text=${message}`,
+      `https://wa.me/971545253697?text=${message}`,
       "_blank"
     );
   };

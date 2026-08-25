@@ -478,7 +478,7 @@ export default function Services() {
             <p style={{ color: "#aab6c9", marginTop: 8 }}>Our team replies within one business day.</p>
           </div>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <a href={`https://wa.me/971545087262?text=${encodeURIComponent("Hello AEREX, I'd like to enquire about your services.")}`}
+            <a href={`https://wa.me/971545253697?text=${encodeURIComponent("Hello AEREX, I'd like to enquire about your services.")}`}
               target="_blank" rel="noopener noreferrer" className="btn btn-light">
               WhatsApp Us
             </a>
