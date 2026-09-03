@@ -1,5 +1,25 @@
 services:
   - type: web
+    runtime: node
+    name: aerex-api
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    disk:
+      name: aerex-uploads
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        value: https://aerex.onrender.com
+
+  - type: web
     runtime: static
     name: aerex
     rootDir: frontend
