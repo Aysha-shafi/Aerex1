@@ -12,6 +12,10 @@ connectDB();
 const app = express();
 app.use(cors({ origin: process.env.CLIENT_URL || "*" }));
 app.use(express.json());
+app.use("/api", (req, res, next) => {
+	res.set("Cache-Control", "no-store");
+	next();
+});
 app.use("/uploads", express.static(process.env.UPLOAD_DIR || path.resolve("uploads")));
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);

@@ -4,6 +4,9 @@ services:
     name: aerex
     buildCommand: npm install && npm run build
     staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://aerex1.onrender.com/api
     routes:
       - type: rewrite
         source: /*

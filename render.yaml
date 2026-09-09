@@ -17,7 +17,7 @@ services:
       - key: CLOUDINARY_API_SECRET
         sync: false
       - key: CLIENT_URL
-        value: https://aerex.onrender.com
+        value: https://aerex-pr9w.onrender.com
 
   - type: web
     runtime: static
@@ -25,6 +25,9 @@ services:
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://aerex1.onrender.com/api
     routes:
       - type: rewrite
         source: /*
