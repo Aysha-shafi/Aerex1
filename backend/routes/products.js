@@ -35,7 +35,7 @@ router.put("/:id", protect, upload.array("images",6), async (req, res) => {
     if(shortDescription!==undefined) p.shortDescription=shortDescription; if(description!==undefined) p.description=description;
     if(req.body.specifications) p.specifications=JSON.parse(req.body.specifications);
     if(featured!==undefined) p.featured=featured==="true"; if(inStock!==undefined) p.inStock=inStock==="true";
-    if(req.files?.length) p.images=[...p.images,...await Promise.all(req.files.map(uploadToCloudinary))];
+    if(req.files?.length) p.images=await Promise.all(req.files.map(uploadToCloudinary));
     await p.save(); res.json(p);
   } catch(err){ res.status(400).json({message:err.message}); }
 });
