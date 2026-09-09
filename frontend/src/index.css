@@ -23,6 +23,7 @@ a{color:inherit;text-decoration:none;}ul{list-style:none;margin:0;padding:0;}img
 .service-card{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start;}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);}
+.product-card{background:#fff;}
 .product-card-image{transition:transform .35s ease;}
 .product-card:hover .product-card-image{transform:scale(1.08);}
 @media (prefers-reduced-motion: reduce){.product-card-image{transition:none;}.product-card:hover .product-card-image{transform:none;}}
